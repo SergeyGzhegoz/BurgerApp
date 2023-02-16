@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BurgerApp.OrderPage"
+             Title="OrderPage">
+    <VerticalStackLayout
+            Spacing="15"
+            Padding="15,0"
+            HorizontalOptions="Start">
+        <Picker x:Name="meetPicker" Title="Тип мяса:" WidthRequest="300" HorizontalOptions="Start">
+            <Picker.Items>
+                <x:String>Говядина</x:String>
+                <x:String>Свинина</x:String>
+                <x:String>Курица</x:String>
+            </Picker.Items>
+        </Picker>
+        <Label Text="Дополнительно:"/>
+        <Grid RowSpacing="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Frame 
+                   CornerRadius="40" HeightRequest="60" WidthRequest="60"
+                   Grid.Column="0" Grid.Row="0" BorderColor="Orange" >
+                <Image Source="lettuce.png" Margin="-20" HeightRequest="60" WidthRequest="60"
+                   VerticalOptions="Center"/>
+            </Frame>
+            <VerticalStackLayout Grid.Column="1" Grid.Row="0" Spacing="6">
+                <Label Text="Салат" Grid.Column="1"/>
+                <Label Text="10" FontSize="18" Grid.Column="1"/>
+            </VerticalStackLayout>
+            <HorizontalStackLayout Grid.Column="2" Grid.Row="0">
+                <Button Text="+" WidthRequest="40" HeightRequest="40"></Button>
+                <Label Text="2" FontSize="18" Margin="16"></Label>
+                <Button Text="-"  WidthRequest="40" HeightRequest="40"></Button>
+            </HorizontalStackLayout>
+
+            <Frame 
+                   CornerRadius="40" HeightRequest="60" WidthRequest="60"
+                   Grid.Column="0" Grid.Row="1" BorderColor="Orange">
+                <Image Source="tomato.png" Margin="-10" HeightRequest="40" WidthRequest="40"
+                   VerticalOptions="Center"/>
+            </Frame>
+            <VerticalStackLayout Grid.Column="1" Grid.Row="1" Spacing="10">
+                <Label Text="Томаты" Grid.Column="1"/>
+                <Label Text="5" FontSize="18" Grid.Column="1"/>
+            </VerticalStackLayout>
+            <HorizontalStackLayout Grid.Column="2" Grid.Row="1">
+                <Button Text="+" WidthRequest="40" HeightRequest="40"></Button>
+                <Label Text="1" FontSize="18" Margin="16"></Label>
+                <Button Text="-"  WidthRequest="40" HeightRequest="40"></Button>
+            </HorizontalStackLayout>
+
+            <Label Text="Количество:" Grid.Column="1" Grid.Row="2" Margin="20"
+                   FontSize="16"/>
+            <HorizontalStackLayout Grid.Column="2" Grid.Row="2">
+                <Button Text="+" WidthRequest="40" HeightRequest="40"></Button>
+                <Label Text="3" FontSize="18" Margin="16"></Label>
+                <Button Text="-"  WidthRequest="40" HeightRequest="40"></Button>
+            </HorizontalStackLayout>
+        </Grid>
+        <Label Text="Итого: 2 х 390 = 780" FontSize="16"/>
+        <Button Text="Добавить в заказ" VerticalOptions="Center" WidthRequest="200"
+                Command="{Binding AddCommand}"
+                CommandParameter="{Binding Source={x:Reference Name=meetPicker}, Path=SelectedItem}"/>
+    </VerticalStackLayout>
+</ContentPage>
